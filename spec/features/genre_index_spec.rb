@@ -8,8 +8,16 @@ describe 'genre index' do
 
       visit genres_path
 
-      expect(page).to have_content(genre1.name)
-      expect(page).to have_content(genre2.name)
+      expect(page).to have_link(genre1.name)
+      expect(page).to have_link(genre2.name)
+    end
+    it 'does not see create new genre form' do
+      genre1 = Genre.create(name: 'Rock')
+      genre2 = Genre.create(name: 'Jazz')
+
+      visit genres_path
+
+      expect(page).to_not have_content('Create a new Genre')
     end
   end
   describe 'as an admin' do

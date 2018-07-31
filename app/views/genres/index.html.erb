@@ -1,7 +1,7 @@
 <h1>All Genres</h1>
 
 <% @genres.each do |genre| %>
-  <%= genre.name %><br>
+  <%= link_to genre.name, genre_path(genre) %><br>
 <% end %>
 
 <% if current_admin? %>
