@@ -3,3 +3,5 @@
 <% @genre.songs.each do |song| %>
   <%= song.title %>
 <% end %>
+
+<p>Average rating: <%= @genre.avg_rating %></p>
