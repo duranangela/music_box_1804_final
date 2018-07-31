@@ -15,6 +15,9 @@ class SongsController < ApplicationController
 
   def create
     @artist = Artist.find(params[:artist_id])
+    if params[:song][:rating] > '5' || params[:song][:rating] < '1'
+      flash[:notice] = "Rating must be between 1-5"
+    end
     @song = @artist.songs.create(song_params)
     if @song.save
       redirect_to "/songs"

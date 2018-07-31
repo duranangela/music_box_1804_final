@@ -15,7 +15,7 @@ describe 'user sees one song' do
     expect(page).to_not have_content(song_2.title)
     expect(page).to_not have_content(song_2.length)
   end
-  id 'sees song rating' do
+  it 'sees song rating' do
     artist = Artist.create(name: 'Journey')
     song_1 = artist.songs.create(title: "Don't Stop Believing", length: 320, play_count: 390808, rating: 3)
 
