@@ -49,5 +49,23 @@ describe 'genre index' do
       expect(page).to have_content(genre2.name)
       expect(page).to have_content(name)
     end
+    it 'if genre does not get created goes to genre index and does not see new genre' do
+      admin = User.create(username: 'bob', password: '12345', role: 1)
+      genre1 = Genre.create(name: 'Rock')
+      genre2 = Genre.create(name: 'Jazz')
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+      name = 'Dance'
+
+      visit genres_path
+
+      click_on 'Create Genre'
+
+      expect(current_path).to eq(genres_path)
+      expect(page).to have_content(genre1.name)
+      expect(page).to have_content(genre2.name)
+      expect(page).to_not have_content(name)
+    end
   end
 end

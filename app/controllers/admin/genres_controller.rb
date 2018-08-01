@@ -5,7 +5,7 @@ class Admin::GenresController < Admin::BaseController
     if @genre.save
       redirect_to genres_path
     else
-      render :index
+      redirect_to genres_path
     end
   end
 
